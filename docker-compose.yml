@@ -1,0 +1,17 @@
+version: '3'
+services:
+ web:
+  container_name: wezvadev
+  image: "adamtravis/wezvatechcicd"
+  ports:
+  - "8080:8080"
+  volumes:
+  - ./sanity:/var/log/wezva
+  restart: always
+  depends_on:
+    - redis
+ redis:
+  container_name: wezvadevdb
+  image: "redis:alpine"
+  ports:
+  - "6379:6379"
