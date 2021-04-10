@@ -16,7 +16,7 @@ pipeline {
   {
   agent { label 'demo' }
    steps { 
-    git branch: 'master', url: 'https://gitlab.com/scmlearningcentre/WEZVACICD.git'
+    git branch: 'master', url: 'https://gitlab.com/debasis4/cicd.git'
    }
   }
   
@@ -135,7 +135,7 @@ pipeline {
       script {
           docker.withRegistry( 'https://registry.hub.docker.com', 'dockerhub' ) {
              /* Build Docker Image locally */
-             myImage = docker.build("adamtravis/wezvacicd:latest")
+             myImage = docker.build("debasis4/democicd:latest")
 
              /* Push the container to the Registry */
              myImage.push()
@@ -151,7 +151,7 @@ pipeline {
        when {environment name: 'BUILDME', value: 'yes'}
 	   steps {
 	    echo "Checkout Deployment configuration files .."
-	    git branch: 'master', url: 'https://gitlab.com/scmlearningcentre/WEZVACICD.git'
+	    git branch: 'master', url: 'hhttps://gitlab.com/debasis4/cicd.git'
 	    script {
             kubernetesDeploy(kubeconfigId: 'demokubeconfig',configs: 'sampledeployment.yml')
 		}
@@ -163,7 +163,7 @@ pipeline {
     agent { label 'demo' }
     when {environment name: 'BUILDME', value: 'yes'}
     steps {
-      sh "chmod +x runsanity.sh; ./runsanity.sh adamtravis/wezvacicd:latest"
+      sh "chmod +x runsanity.sh; ./runsanity.sh debasis4/democicd:latest"
     }
   }
   
