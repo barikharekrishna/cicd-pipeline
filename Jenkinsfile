@@ -9,12 +9,6 @@ pipeline {
     }
     stage ('PreCheck') {
       agent { label'demo' }
-      when {
-        anyOf {
-            changeset "samplejar/**"
-            changeset "samplewar/**"
-        }
-      }
       steps {
         script {
           env.BUILDME= "yes"
@@ -23,7 +17,7 @@ pipeline {
     }
     stage ('Build Artifacts') {
       agent {label'demo'}
-      when {environment name: 'BUILDME' , value: 'no'}
+      when {environment name: 'BUILDME' , value: 'yes'}
       steps {
         echo "Building Jar Component ..."
         dir ('./samplejar') {
