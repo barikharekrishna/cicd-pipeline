@@ -21,5 +21,19 @@ pipeline {
         }
       }
     }
+    stage ('Build Artifacts') {
+      agent {label'demo'}
+      when {environment name: 'BUILDME' , value: 'no'}
+      steps {
+        echo "Building Jar Component ..."
+        dir ('./samplejar') {
+          sh "mvn clean package"
+        }
+        echo "Building War Component ..."
+        dir ('./samplewar') {
+          sh "mvn clen package"
+        }
+      }
+    }
   }
 }
