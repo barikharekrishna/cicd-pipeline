@@ -1,17 +1,17 @@
 version: '3'
 services:
  web:
-  container_name: wezvadev
-  image: "adamtravis/wezvatechcicd"
+  container_name: build
+  image: "debasis4/devbaseimage"
   ports:
   - "8080:8080"
   volumes:
-  - ./sanity:/var/log/wezva
+  - ./sanity:/var/log/debasis
   restart: always
   depends_on:
     - redis
  redis:
-  container_name: wezvadevdb
+  container_name: devdb
   image: "redis:alpine"
   ports:
   - "6379:6379"
