@@ -9,9 +9,9 @@ pipeline {
     environment {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "18.219.157.235:8081/"
-        NEXUS_REPOSITORY = "dev-release"
-	NEXUS_REPOGRP_ID    = "dev-maven-group"
+        NEXUS_URL = "172.31.40.209:8081"
+        NEXUS_REPOSITORY = "vprofile-release"
+	NEXUS_REPO_ID    = "vprofile-release"
         NEXUS_CREDENTIAL_ID = "nexuslogin"
         ARTVERSION = "${env.BUILD_ID}"
     }
@@ -91,7 +91,7 @@ pipeline {
                             nexusVersion: NEXUS_VERSION,
                             protocol: NEXUS_PROTOCOL,
                             nexusUrl: NEXUS_URL,
-                            groupId: NEXUS_REPOGRP_ID,
+                            groupId: pom.groupId,
                             version: ARTVERSION,
                             repository: NEXUS_REPOSITORY,
                             credentialsId: NEXUS_CREDENTIAL_ID,
